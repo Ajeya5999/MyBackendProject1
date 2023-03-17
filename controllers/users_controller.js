@@ -18,26 +18,30 @@ module.exports.signIn = function(req, res){
     });
 };
 
-module.exports.create = function(req, res){
+module.exports.create = async function(req, res){
     if(req.body.password != req.body.confirm_password){
         return res.redirect('back');
     }
-    User.findOne({email: req.body.email}, function(err, user){
-        if(err){
-            console.log("Error in signing up");
+    let user;
+    try{
+        user = await User.findOne({email: req.body.email})
+    } catch(err){
+        console.log("Error in signing up");
+        return;
+    }
+    if(!user){
+        try{ 
+            let data = await User.create(req.body);
+            return res.redirect('/users/sign-in');
+        } catch(err){
+            console.log("Error in creating user");
             return;
-        }
-        if(!user){
-            User.create(req.body, function(err, user){
-                if(err){
-                    console.log("Error in signing up");
-                    return;
-                }
-            });
-        } else{
-            return res.redirect('back');
-        }
-    });
+        }    
+    }
+    else{
+        console.log("User already exists");
+        return res.redirect('back');
+    }
 };
 
 module.exports.createSession = function(req, res){
