@@ -23,10 +23,10 @@ passport.serializeUser(function(user, done){
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done){
+passport.deserializeUser( async function(id, done){
     let user;
     try{
-        user = User.findById(id);
+        user = await User.findById(id);
     } catch(err){
         console.log("Error in finding user --> Passport");
         return done(err);
