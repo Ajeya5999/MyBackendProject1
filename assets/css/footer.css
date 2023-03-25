@@ -1,0 +1,22 @@
+footer {
+  font-family: sans-serif;
+  background-color: #757475;
+  display: flex;
+  justify-content: left;
+  color: white;
+  padding: 15px 0;
+}
+footer ul {
+  margin: 0;
+  display: inline-block;
+  list-style-type: none;
+}
+footer ul a {
+  color: white;
+  text-decoration: none;
+}
+footer ul a:hover {
+  color: #cdcdcd;
+}
+
+/*# sourceMappingURL=footer.css.map */
