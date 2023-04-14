@@ -9,8 +9,8 @@ const postSchema = new mongoose.Schema({
         ref: 'User'
     },
     comments: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'comment'
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Comment'
     }
 },{
     timestamps: true

@@ -24,6 +24,19 @@
                                 <input type="submit" value="Add Reply">
                             </form>
                         <% } %>
+                        <div class="post-comments-list">
+                            <ul id="post-comments-<%= post._id %>">
+                                <% for(comment of posts.comments){ %> 
+                                <li>
+                                    <%= comment.content %>
+                                    <br>
+                                    <small>
+                                        <%= comment.user.name %>
+                                    </small>
+                                </li>
+                                <% } %>
+                            </ul>
+                        </div>
                     </div>
                 </li>
             <% } %>
