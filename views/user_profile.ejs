@@ -1,5 +1,15 @@
 <link rel="stylesheet" href = "/css/user_profile.css">
 <h1>Codeial / <%= title %></h1>
-<div><img scr="images/noProfilePic.jpg" alt="No Profile Picture"></div>
-<p>Name: <%= user.name %></p>
-<p>E-Mail: <%= user.email %></p>
+
+
+<% if(user.id == profile_user.id) { %>
+    <form action="/users/update/<%= profile_user.id %>" method="POST">
+        <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
+        <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
+        <input type="submit" value="update">
+    </form> 
+<% } else { %>
+    <div><img scr="/assets/images/noProfilePic.jpg" alt="No Profile Picture"></div>
+    <p>Name: <%= profile_user.name %></p>
+    <p>E-Mail: <%= profile_user.email %></p>
+<% } %>

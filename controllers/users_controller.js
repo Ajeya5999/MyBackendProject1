@@ -1,10 +1,30 @@
 const User = require('../models/user');
 
-module.exports.profile = function(req, res){
+module.exports.profile = async function(req, res){
+    let user;
+    try {
+        user = await User.findById(req.params.id);
+    } catch(err){
+        console.log("Cannot get user", err);
+    }
     return res.render('user_profile', {
-        title: 'Profile Page'
+        title: 'Profile Page',
+        profile_user: user
     });
 };
+
+module.exports.update = async function(req, res){
+    if(req.user.id == req.params.id){
+        try{
+            let user = await User.findByIdAndUpdate(req.params.id, {name: req.body.name, email: req.body.email});
+        } catch(err) {
+            console.log("Cannot update user", err);
+        }
+        return res.redirect('back');
+    } else {
+        return res.status(401).send('Unauthorized');
+    }
+}
 
 module.exports.signUp = function(req, res){
     if(req.isAuthenticated()){
