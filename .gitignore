@@ -1,1 +1,11 @@
 node_modules/
+
+            <% if(flash.success && flash.success.length > 0) { %>
+                new Noty({
+                    theme: 'relax',
+                    text: "<%= flash.success %>",
+                    type: 'success',
+                    layout: 'topRight',
+                    timeout: 1500
+                }).show();
+            <% } %>
