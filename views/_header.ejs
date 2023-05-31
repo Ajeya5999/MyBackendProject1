@@ -2,7 +2,7 @@
     <span id="header-codeial">Codeial</span>
     <span>
         <% if(locals.user) { %>
-            <a href="/users/profile"><%= user.name %></a> | 
+            <a href="/users/profile/<%= locals.user.id %>"><%= user.name %></a> | 
             <a href="/users/sign-out">Sign Out</a>
         <% } else { %>
             <a href="/users/sign-in">Sign In</a> | 
