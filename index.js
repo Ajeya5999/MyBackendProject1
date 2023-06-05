@@ -10,6 +10,7 @@ const passportLocal = require('./config/passport-local-strategy');
 const mongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
+const passportJwt = require('./config/passport-jwt-strategy');
 
 app.use(express.urlencoded());
 app.use(cookieParser());

@@ -2,9 +2,9 @@ const Post = require("../models/post");
 const Comment = require("../models/comment")
 
 module.exports.create = async function(req, res){
-    let data;
+    let post;
     try{
-        data = await Post.create({
+        post = await Post.create({
             content: req.body.content,
             user:req.user._id
         });
@@ -18,7 +18,7 @@ module.exports.create = async function(req, res){
                 post: post
             }, 
             message: "Post Created!"
-        })
+        });
     }
     req.flash('success', 'Post Published!');
     return res.redirect('back');
